@@ -4,6 +4,8 @@ dotenv.config();
 import express, { Express } from 'express';
 import bodyParser from 'body-parser';
 import productRoute from './routes/product.route';
+import categoryRoute from './routes/categorytree.route';
+import projectRoute from './routes/project.route';  // Import the new route
 
 
 // Import routes
@@ -32,6 +34,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/service', ServiceRoutes);
 app.use(express.json());
 app.use('/api', productRoute);
+app.use('/api', projectRoute);  // Add the new route
+app.use('/api', categoryRoute);
 
 
 // Global error handler
