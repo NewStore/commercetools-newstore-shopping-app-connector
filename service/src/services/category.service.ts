@@ -1,7 +1,9 @@
 // src/services/category.service.ts
 // src/services/category.service.ts
 
+// import Category from '../client/commercetoolsClient';
 import apiRoot from '../client/commercetoolsClient';
+import { Category } from '@commercetools/platform-sdk';
 
 export const getAllCategories = async () => {
   const response = await apiRoot
@@ -18,11 +20,11 @@ export const getRootCategories = async () => {
 };
 
 
-export const buildCategoryTree = (categories) => {
+export const buildCategoryTree = (categories: Category[]) => {
   const categoryMap = new Map();
   categories.forEach(category => categoryMap.set(category.id, { ...category, children: [] }));
 
-  const rootCategories = [];
+  const rootCategories: Category[] = [];
 
   categories.forEach(category => {
     if (category.parent) {

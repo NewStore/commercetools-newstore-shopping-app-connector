@@ -31,7 +31,7 @@ const client = new ClientBuilder()
   .build();
 
 const apiRoot = createApiBuilderFromCtpClient(client)
-  .withProjectKey({projectKey: process.env.CTP_PROJECT_KEY})
+  .withProjectKey({projectKey: process.env.CTP_PROJECT_KEY || 'CTP_KEY_MISSING'})
 
 
 export default apiRoot;

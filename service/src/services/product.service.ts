@@ -14,6 +14,7 @@ export const searchProducts = async (params: ProductSearchParams) => {
   if (params.q) {
     // TODO, doesnt work
     query['text.en-GB'] = params.q;  // Specify the language component here
+    query['fuzzy'] = true;
     // query['filter.query'] = `searchKeywords.en: "${params.q}"`;
   }
 
@@ -43,7 +44,7 @@ export const searchProducts = async (params: ProductSearchParams) => {
   const response = await apiRoot
     .productProjections()
     .search()
-    .get({ queryArgs: query, 'fuzzy' : true })
+    .get({ queryArgs: query })
     .execute();
 
   return response.body.results.map(product => ({

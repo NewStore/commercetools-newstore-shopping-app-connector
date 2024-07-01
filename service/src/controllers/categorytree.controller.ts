@@ -9,6 +9,7 @@ export const getCategoryTree = async (req: Request, res: Response): Promise<void
     const categoryTree = buildCategoryTree(categories);
     res.status(200).json(categoryTree);
   } catch (error) {
-    res.status(500).send(`Error fetching categories: ${error.message}`);
+    const typedError = error as Error;
+    res.status(500).send(`Error fetching categories: ${typedError.message}`);
   }
 };

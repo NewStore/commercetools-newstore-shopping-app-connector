@@ -8,6 +8,7 @@ export const activateProductSearch = async (req: Request, res: Response): Promis
     const result = await enableProductSearchIndexing();
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).send(`Error enabling product search indexing: ${error.message}`);
+    const typedError = error as Error
+    res.status(500).send(`Error enabling product search indexing: ${typedError.message}`);
   }
 };
